@@ -42,13 +42,15 @@ pipeline {
             }
         }
     }
-        stage("Quality Gate"){
+          stage("SonarQube Analysis"){
         steps{
             script{
-                waitforQualityGate abort pipeline, false, credentialsID: "jenkins-sonarqube-token"
+                withSonarQubeEnv(credentialId: 'Jenkins-sonarqube-token'){
+                    sh "mvn sonar:sonar"
                 }
             }
         }
+    }
         stage("Build & Push Docker Image") {
             steps {
                 script {
