@@ -33,15 +33,15 @@ pipeline {
           sh "mvn test"
         }
       }
-    //       stage("SonarQube Analysis"){
-    //     steps{
-    //         script{
-    //             withSonarQubeEnv(credentialId: 'Jenkins-sonarqube-token'){
-    //                 sh "mvn sonar:sonar"
-    //             }
-    //         }
-    //     }
-    // }
+          stage("SonarQube Analysis"){
+        steps{
+            script{
+                withSonarQubeEnv(credentialId: 'Jenkins-sonarqube-token'){
+                    sh "mvn sonar:sonar"
+                }
+            }
+        }
+    }
         // stage("Quality Gate"){
         // steps{
         //     script{
